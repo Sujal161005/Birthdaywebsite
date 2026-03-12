@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="theme-color" content="#0b0820">
+<title>Happy birthday ❤️</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<div class="bgGlow" aria-hidden="true"></div>
+
+<!-- Background music (autoplay is blocked until a user tap) -->
+<audio id="bgm" preload="auto" loop></audio>
+
+<div class="stage">
+  <main class="phone" role="application" aria-label="Romantic birthday story">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brandDot" aria-hidden="true"></div>
+        <div class="brandText">
+          <div class="brandTitle">Our Love Story</div>
+          <div class="brandSub">A cinematic little universe</div>
+        </div>
+      </div>
+
+      <div class="topActions">
+        <button class="chip" id="constellationBtn" type="button">✨ Constellation Mode</button>
+        <button class="chip" id="musicBtn" type="button" aria-pressed="false">🔇 Music: Off</button>
+        <button class="chip chipGhost" id="letterBtn" type="button">💌 Secret Letter</button>
+      </div>
+    </header>
+
+    <div class="phoneInner" id="scrollRoot">
+      <section class="scene sceneHero" id="hero" data-scene>
+        <div class="sceneHeader">
+          <div class="tag">Opening Scene</div>
+          <h1 class="heroTitle">
+            <span class="heroLine">Happy Birthday</span>
+            <span class="heroName" id="herName">❤️</span>
+          </h1>
+          <p class="heroSubtitle">A little corner of the universe dedicated to our love story.</p>
+
+          <div class="heroActions">
+            <button class="btnPrimary" id="startBtn" type="button">Start Our Story</button>
+            <button class="btnSecondary" id="skipBtn" type="button" title="Jump to timeline">Jump to Moments</button>
+          </div>
+        </div>
+
+        <div class="heroCards">
+          <div class="glassCard">
+            <div class="cardTitle">🌌 Starry Sky</div>
+            <div class="cardText">Look closely—there’s a hidden star.</div>
+            <button class="chip chipGhost" id="secretStarBtn" type="button" style="margin-top:8px;">⭐ Secret Scene</button>
+          </div>
+          <div class="glassCard">
+            <div class="cardTitle">⏳ Birthday Countdown</div>
+            <div class="countGrid" id="countdown">
+              <div class="countItem"><div class="countNum" id="cdDays">—</div><div class="countLabel">Days</div></div>
+              <div class="countItem"><div class="countNum" id="cdHours">—</div><div class="countLabel">Hours</div></div>
+              <div class="countItem"><div class="countNum" id="cdMins">—</div><div class="countLabel">Minutes</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene" id="timeline" data-scene>
+        <div class="sceneTop">
+          <div class="tag">Interactive Love Timeline</div>
+          <h2 class="sceneTitle">Our Journey</h2>
+          <p class="sceneLead">Tap a moment to reveal the story behind it.</p>
+        </div>
+
+        <div class="timeline">
+          <button class="milestone" data-m="firstTalk" type="button">
+            <div class="milestoneDot"></div>
+            <div class="milestoneBody">
+              <div class="milestoneTitle">First Talk</div>
+              <div class="milestoneMeta">Where it all quietly began</div>
+            </div>
+          </button>
+
+          <button class="milestone" data-m="firstDate" type="button">
+            <div class="milestoneDot"></div>
+            <div class="milestoneBody">
+              <div class="milestoneTitle">First Date</div>
+              <div class="milestoneMeta">Butterflies, smiles, and “this feels right”</div>
+            </div>
+          </button>
+
+          <button class="milestone" data-m="memories" type="button">
+            <div class="milestoneDot"></div>
+            <div class="milestoneBody">
+              <div class="milestoneTitle">Special Memories</div>
+              <div class="milestoneMeta">The little things that became everything</div>
+            </div>
+          </button>
+
+          <button class="milestone" data-m="year1" type="button">
+            <div class="milestoneDot"></div>
+            <div class="milestoneBody">
+              <div class="milestoneTitle">1 Year Together</div>
+              <div class="milestoneMeta">A chapter I never want to end</div>
+            </div>
+          </button>
+
+          <button class="milestone" data-m="year2" type="button">
+            <div class="milestoneDot"></div>
+            <div class="milestoneBody">
+              <div class="milestoneTitle">2 Years Together</div>
+              <div class="milestoneMeta">My favorite part of my life</div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="scene" id="map" data-scene>
+        <div class="sceneTop">
+          <div class="tag">Memory Map</div>
+          <h2 class="sceneTitle">Places That Hold Us</h2>
+          <p class="sceneLead">Tap a marker to open the memory.</p>
+        </div>
+
+        <div class="mapWrap">
+          <div class="mapGlass">
+            <svg class="memoryMap" viewBox="0 0 1000 720" role="img" aria-label="Memory map">
+              <defs>
+                <linearGradient id="river" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="rgba(140,90,255,0.15)"/>
+                  <stop offset="1" stop-color="rgba(255,80,170,0.10)"/>
+                </linearGradient>
+              </defs>
+
+              <path d="M110 150 C260 60, 360 220, 520 160 C700 95, 760 260, 900 210" fill="none" stroke="url(#river)" stroke-width="40" stroke-linecap="round"/>
+              <path d="M80 520 C210 420, 360 610, 540 520 C690 445, 770 590, 930 520" fill="none" stroke="rgba(90,170,255,0.10)" stroke-width="50" stroke-linecap="round"/>
+
+              <g class="marker" data-place="firstTalk" tabindex="0" role="button" aria-label="Cutiee Simran marker">
+                <circle cx="210" cy="190" r="14"></circle>
+                <circle cx="210" cy="190" r="28" class="pulse"></circle>
+                <text x="245" y="198">📍 Cutiee Simran</text>
+              </g>
+
+              <g class="marker" data-place="firstDate" tabindex="0" role="button" aria-label="Happy Simran marker">
+                <circle cx="620" cy="205" r="14"></circle>
+                <circle cx="620" cy="205" r="28" class="pulse"></circle>
+                <text x="655" y="213">📍 Happy Simran</text>
+              </g>
+
+              <g class="marker" data-place="hangout" tabindex="0" role="button" aria-label="Meri Simran marker">
+                <circle cx="340" cy="520" r="14"></circle>
+                <circle cx="340" cy="520" r="28" class="pulse"></circle>
+                <text x="375" y="528">📍 Meri Simran</text>
+              </g>
+
+              <g class="marker" data-place="bestMemory" tabindex="0" role="button" aria-label="Angry Simran marker">
+                <circle cx="780" cy="520" r="14"></circle>
+                <circle cx="780" cy="520" r="28" class="pulse"></circle>
+                <text x="815" y="528">📍 Angry Simran</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="mapCard glassCard" id="mapCard" aria-live="polite">
+            <div class="cardTitle" id="mapTitle">Tap a marker</div>
+            <div class="cardText" id="mapText">I’ll tell you the story behind that place.</div>
+            <div class="photoFrame" id="mapPhoto" hidden>
+              <img id="mapImg" alt="Memory photo">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene" id="gallery" data-scene>
+        <div class="sceneTop">
+          <div class="tag">Memories Gallery</div>
+          <h2 class="sceneTitle">Our Little Museum</h2>
+          <p class="sceneLead">Tap a photo to relive the moment. </p>
+        </div>
+
+        <div class="galleryGrid" id="galleryGrid" aria-label="Memories gallery"></div>
+      </section>
+
+      <section class="scene" id="game" data-scene>
+        <div class="sceneTop">
+          <div class="tag">Mini Love Game</div>
+          <h2 class="sceneTitle">Catch the Hearts</h2>
+          <p class="sceneLead">Tap the falling hearts and collect points.</p>
+        </div>
+
+        <div class="gameWrap glassCard">
+          <div class="gameHud">
+            <div class="hudItem"><span class="hudLabel">Score</span><span class="hudValue" id="score">0</span></div>
+            <div class="hudItem"><span class="hudLabel">Time</span><span class="hudValue" id="timeLeft">30</span></div>
+            <button class="chip" id="gameBtn" type="button">Start</button>
+          </div>
+          <canvas id="gameCanvas" width="320" height="360" aria-label="Catch the hearts game"></canvas>
+          <div class="hint">Tip: faster taps = higher score.</div>
+        </div>
+      </section>
+
+      <section class="scene sceneFinal" id="finale" data-scene>
+        <div class="sceneTop">
+          <div class="tag">Final Celebration</div>
+          <h2 class="sceneTitle">For You, My Love</h2>
+          <p class="sceneLead">A little celebration in our galaxy.</p>
+        </div>
+
+        <div class="finalGrid">
+          <div class="finalCard glassCard">
+            <div class="cake" aria-hidden="true">
+              <div class="cakeTop"></div>
+              <div class="cakeMid"></div>
+              <div class="cakeBot"></div>
+              <div class="candle">
+                <div class="flame"></div>
+              </div>
+            </div>
+            <div class="finalMsg" id="finalMsg">
+              Happy Birthday My Love ❤️<br>
+              Thank you for the most beautiful two years of my life.
+            </div>
+            <button class="btnPrimary" id="celebrateBtn" type="button">Celebrate</button>
+          </div>
+
+          <div class="finalCard glassCard">
+            <canvas id="fxCanvas" width="320" height="420" aria-label="Fireworks and confetti"></canvas>
+            <div class="fxHint">Tap inside to launch fireworks.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <nav class="bottomNav" aria-label="Story navigation">
+      <button class="navDot isActive" data-jump="#hero" type="button" aria-label="Go to hero"></button>
+      <button class="navDot" data-jump="#timeline" type="button" aria-label="Go to timeline"></button>
+      <button class="navDot" data-jump="#map" type="button" aria-label="Go to memory map"></button>
+      <button class="navDot" data-jump="#gallery" type="button" aria-label="Go to gallery"></button>
+      <button class="navDot" data-jump="#game" type="button" aria-label="Go to game"></button>
+      <button class="navDot" data-jump="#finale" type="button" aria-label="Go to finale"></button>
+    </nav>
+  </main>
+</div>
+
+<div class="overlay" id="storyOverlay" hidden>
+  <div class="overlayInner">
+    <div class="overlayTop">
+      <div class="tag">Hidden Scene</div>
+      <button class="chip chipGhost" id="closeOverlay" type="button">Close</button>
+    </div>
+    <div class="typebox">
+      <div class="typeGlow" aria-hidden="true"></div>
+      <div class="typeText" id="typeText"></div>
+      <div class="typeCursor" id="typeCursor" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="letterModal" hidden role="dialog" aria-modal="true" aria-label="Secret love letter">
+  <div class="modalScrim" data-close></div>
+  <div class="modalCard glassCard">
+    <div class="modalTop">
+      <div class="tag">Secret Love Letter</div>
+      <button class="chip chipGhost" data-close type="button">Close</button>
+    </div>
+    <h3 class="modalTitle">To <span id="letterName">you</span>,</h3>
+    <div class="modalBody" id="letterBody"></div>
+    <div class="modalSig">— <span id="sigName">Sujal</span></div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="lightboxScrim" data-lb-close></div>
+  <div class="lightboxCard">
+    <button class="chip chipGhost lbClose" data-lb-close type="button">Close</button>
+    <button class="lbNav lbPrev" id="lbPrev" type="button" aria-label="Previous photo">‹</button>
+    <button class="lbNav lbNext" id="lbNext" type="button" aria-label="Next photo">›</button>
+    <img class="lbImg" id="lbImg" alt="Memory photo">
+    <div class="lbCaption">
+      <div class="lbTitle" id="lbTitle"></div>
+      <div class="lbText" id="lbText"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
