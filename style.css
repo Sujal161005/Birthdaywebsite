@@ -624,7 +624,14 @@ body{
   background: rgba(0,0,0,0.26);
   padding: 18px 16px;
   min-height: 240px;
-  overflow:hidden;
+  overflow:auto;
+}
+.typebox::-webkit-scrollbar{ width:10px; }
+.typebox::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.14);
+  border-radius:999px;
+  border: 3px solid rgba(0,0,0,0.0);
+  background-clip: padding-box;
 }
 .typeGlow{
   position:absolute;
